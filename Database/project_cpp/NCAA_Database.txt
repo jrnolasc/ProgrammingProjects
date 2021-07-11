@@ -1,0 +1,39 @@
+CREATE TABLE Teams(
+TeamId int,
+University_Name char(100) NOT NULL,
+Nickname char(50) NOT NULL,
+Rank int,
+PRIMARY KEY (TeamId)
+);
+
+CREATE TABLE Games(
+GameId int,
+Rank1 int,
+Rank2 int,
+Location char(50) NOT NULL,
+Date date NOT NULL,
+PRIMARY KEY (GameId)
+
+);
+
+CREATE TABLE Result(
+
+GameId int,
+TeamOneId int,
+TeamTwoId int,
+ScoreOne int,
+ScoreTwo int,
+FOREIGN KEY (GameId) REFERENCES Games(GameId),
+FOREIGN KEY (TeamOneId) REFERENCES Teams(TeamId),
+FOREIGN KEY (TeamTwoId) REFERENCES Teams(TeamId)
+
+);
+
+Insert into Teams values(1, 'University of Space', 'Astrokins', 1);
+Insert into Teams values(2, 'University of The Ocean', 'Mighty Nemo', 2);
+
+insert into Games values(1, 1, 2, 'Sun Stadium', STR_TO_DATE('2021-06-05','%Y-%m-%d'));
+insert into Games values(2, 1, 2, 'Atlantis Stadium', STR_TO_DATE('2021-09-05','%Y-%m-%d'));
+
+insert into Result values(1, 1, 2, 70, 64);
+insert into Result values(2, 1, 2, 79, 80);
